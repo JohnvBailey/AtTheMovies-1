@@ -1,7 +1,6 @@
 package edu.cnm.deepdive.atthemovies;
 
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.atthemovies.model.Movie;
 import edu.cnm.deepdive.atthemovies.viewmodel.MoviesViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +21,12 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+  }
 
-
-
-
+  @Override
+  protected void onStop() {
+    super.onStop();
+    MoviesViewModel viewModel = ViewModelProviders.of(this ).get(MoviesViewModel.class);
+    viewModel.saveData(this);
   }
 }

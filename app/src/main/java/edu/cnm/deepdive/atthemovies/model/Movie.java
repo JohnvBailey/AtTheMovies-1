@@ -1,12 +1,18 @@
 package edu.cnm.deepdive.atthemovies.model;
 
+import android.util.SparseIntArray;
 import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
 
-  private static Long last_id = 0L;
+  private static final long serialVersionUID = 1L;
+
+  public static Long last_id = 0L;
+
   private Long id;
 
   private String title;
@@ -14,21 +20,12 @@ public class Movie {
   private String screenwriter;
 
   public enum Genre{
-    HORROR, ACTION, ROMCOM, DOCUMENTARY, INDIE, EXPERIMENTAL
-  };
+    HORROR, ACTION, ROMCOM, DOCUMENTARY, ANIME, SCIFI, FANTASY
+  }
 
   private Genre genre;
 
   private List<Actor> actors = new ArrayList<>();
-
-
-  public List<Actor> getActors() {
-    return actors;
-  }
-
-  public void setActors(List<Actor> actors) {
-    this.actors = actors;
-  }
 
   public Movie() {
     id = ++last_id;
@@ -44,6 +41,14 @@ public class Movie {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public List<Actor> getActors() {
+    return actors;
+  }
+
+  public void setActors(List<Actor> actors) {
+    this.actors = actors;
   }
 
   public String getScreenwriter() {
@@ -65,7 +70,6 @@ public class Movie {
   @NonNull
   @Override
   public String toString() {
-
-    return title + ": " + genre;
+    return title + ": " + genre ;
   }
 }
